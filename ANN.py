@@ -1,28 +1,17 @@
 import numpy as np
 
+sleep = 12
+study = 4
+stress = 10
+
+xs = np.array([[sleep],
+               [study],
+               [stress]])
+
 #sleep, study, stress
-weights = np.array([0.5, 0.3, -0.2]).reshape(3, 1)
+ws = np.array([0.5, 0.3, -0.2]).reshape(3, 1)
 
-
-def s(p):
-    s = 1/(1+np.exp(-p))
-    return s
-
-
-def predict(sleep, study, stress):
-    inputs = np.array([[sleep],
-                       [study],
-                       [stress]])
-
-    p = inputs.T.dot(weights)
-    pred = s(p)
-    return pred
-
-
-sleep = float(input("sleep: "))
-study = float(input("study: "))
-stress = float(input("stress: "))
-
-prediction = predict(sleep, study, stress)
-
+p = xs.T.dot(ws)
+s = 1/(1+np.exp(-p))
+prediction = s*100
 print(prediction)
